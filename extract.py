@@ -15,7 +15,7 @@ def get_geometry(datafile):
       spec = re.sub( '[A-Z]', '', spec )
       specs = spec.split('x')
       diameter = float( specs[0] )
-      pitch = float( specs[1] )
+      pitch = float( specs[1].split('-')[0] )
       break
   return (diameter, pitch)
 
