@@ -18,10 +18,28 @@ def output_matrix(filename):
       f.write("\n")
   return
 
-if __name__ == "__main__":
-  for file in os.listdir("database"):
-    output_matrix( file )
+def get_prop_name(filename):
+  name = filename.replace('.dat','')
+  name = name.replace('PER3_','')
+  return name
 
+def output_data_by_rpm(filename):
+  inputfile = "database/"+filename
+  output_directory = "processed/"+get_prop_name(filename)
+  if os.path.isdir(output_directory):
+    os.system("rm -r "+output_directory)
+  os.mkdir(output_directory)
+  rpm = extract.get_rpm(inputfile)
+  for r in rpm:
+    data = extract.get_data_by_rpm(inputfile, int(r))
+    with open(output_directory+"/rpm"+str(int(r))+".dat", 'w') as f:
+      f.write(data)
+  return
+
+if __name__ == "__main__":
+  for f in os.listdir("database"):
+    output_matrix( f )
+    output_data_by_rpm( f )
 
 
 

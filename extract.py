@@ -69,23 +69,33 @@ def get_static_performance(datafile):
   print "=========="
   return performance
 
+def get_data_by_rpm(datafile, rpm):
+  data = "";
+  with open(datafile, 'r') as f:
+    for line in f:
+      if "PROP RPM" in line and str(rpm) in line:
+        for line in f:
+          if "PROP RPM" in line:
+            return data
+          data += line
+  return data
+
 if __name__ == "__main__":
   print "Test"
-  print print_list( get_static_performance("database/PER3_19x8E.dat") )
-  print print_list( get_static_performance("database/PER3_13x55EP.dat") )
-  print print_list( get_static_performance("database/PER3_16x55MR.dat") )
-  print print_list( get_static_performance("database/PER3_15x55MR.dat") )
-  print print_list( get_static_performance("database/PER3_22x8.dat") )
-  print print_list( get_static_performance("database/PER3_27x13E.dat") )
-  print print_list( get_static_performance("database/PER3_26x13E.dat") )
-  print print_list( get_static_performance("database/PER3_24x12E.dat") )
-  print print_list( get_static_performance("database/PER3_18x55MR.dat") )
-  print print_list( get_static_performance("database/PER3_17x12E.dat") )
-  print print_list( get_static_performance("database/PER3_17x6E.dat") )
-  print print_list( get_static_performance("database/PER3_20x8E.dat") )
-  print print_list( get_static_performance("database/PER3_13x65E.dat") )
-  print print_list( get_static_performance("database/PER3_16x4E.dat") )
-  print print_list( get_static_performance("database/PER3_19x11.dat") )
-
-
-
+  # print print_list( get_static_performance("database/PER3_19x8E.dat") )
+  # print print_list( get_static_performance("database/PER3_13x55EP.dat") )
+  # print print_list( get_static_performance("database/PER3_16x55MR.dat") )
+  # print print_list( get_static_performance("database/PER3_15x55MR.dat") )
+  # print print_list( get_static_performance("database/PER3_22x8.dat") )
+  # print print_list( get_static_performance("database/PER3_27x13E.dat") )
+  # print print_list( get_static_performance("database/PER3_26x13E.dat") )
+  # print print_list( get_static_performance("database/PER3_24x12E.dat") )
+  # print print_list( get_static_performance("database/PER3_18x55MR.dat") )
+  # print print_list( get_static_performance("database/PER3_17x12E.dat") )
+  # print print_list( get_static_performance("database/PER3_17x6E.dat") )
+  # print print_list( get_static_performance("database/PER3_20x8E.dat") )
+  # print print_list( get_static_performance("database/PER3_13x65E.dat") )
+  # print print_list( get_static_performance("database/PER3_16x4E.dat") )
+  # print print_list( get_static_performance("database/PER3_19x11.dat") )
+  data = get_data_by_rpm("database/PER3_19x11.dat", 2000)
+  print data
