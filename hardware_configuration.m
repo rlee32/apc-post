@@ -14,7 +14,7 @@ function hardware_configuration(M,D,T,ME,PL,fixed_kv,fixed_cells,...
 % motor_weight: grams motor mass.
 
 R = D/2.0*0.0254; % radius, m
-TS = 1125.33*M; % tip speed m/s
+TS = 343*M; % tip speed m/s
 RPM = TS / R * ( 60 / 2 / pi );
 TT = T*4.44822;
 P = TT / PL / ME * 1000.0;
@@ -34,6 +34,10 @@ disp([' For fixed cell count of ' num2str(fixed_cells)]);
 disp(['  Required Kv: ' num2str(tmp / fixed_cells)]);
 disp(['  Amps: ' num2str(P / fixed_cells ...
     / effective_volts_per_cell)]);
+disp([' For fixed cell count of ' num2str(fixed_cells) ...
+    ' and fixed Kv of ' num2str(fixed_kv)]);
+disp(['  RPM: ' num2str( fixed_kv * fixed_cells ...
+    * effective_volts_per_cell )]);
 
 % Coaxial configuration
 disp(['Estimated total thrust: ' ...
